@@ -13,7 +13,7 @@ const initDB = () => {
 
 const disconnectDB = () => {
   mongoose.disconnect();
-  console.log("Database disconnected successfully");
+  console.log("Database disconnected");
 };
 
-module.exports = { initDB, disconnectDB };
+module.exports = { initDB,disconnectDB};

@@ -7,11 +7,14 @@ const PORT = process.env.PORT || 4000;
 const bodyParser = require("body-parser");
 const authRoutes = require("./routes/auth_routes");
 const taskRoutes = require("./routes/task_routes");
-// const db_Connect = require("./dotenv/db_Connect");
+const {initDB,disconnectDB} =require("./utils/db_utils")
+initDB();
+
+// const MONGO_URI = require("./dotenv/MONGO_URI");
 
 // mongoose.connect(db_Connect, () =>{
-//     console.log("database connected");
-// })
+//     console.log("database connected");});
+
 app.use(express.json());
 
 
@@ -31,10 +34,11 @@ app.listen(PORT, () => {
   });
 
 
-mongoose.connect( process.env.db_Connect,
-    { useUnifiedTopology: true, useNewUrlParser: true },
-     console.log("connected to db")
-  );
+// mongoose.connect( process.env.db_Connect,
+//     { useUnifiedTopology: true, useNewUrlParser: true },
+//      console.log("connected to db")
+//   );
+
 
 
   

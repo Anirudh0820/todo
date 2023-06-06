@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const User = require("../models/user_model");
-const Task = require("../models/task_model");
+const User = require("../models/user");
+const Task = require("../models/task");
 const taskService = require("../service/task_service");
 const userService = require("../service/user_service");
 const nodemailer = require("nodemailer");
@@ -63,10 +63,10 @@ exports.deleteTask = async (req, res) => {
     console.log(user._id);
     const task = await taskService.getTask(id);
     console.log(task.createdBy);
-    if (user._id != task.createdBy) {
-      throw new Error("User not authorized");
-    }
-    const res = await taskService.deleteTask(id);
+    // if (user._id != task.createdBy) {
+    //   throw new Error("User not authorized");
+    // }
+    const result = await taskService.deleteTask(id);
     res.status(200).json({
       message: "Task Deleted Successfully",
     });
