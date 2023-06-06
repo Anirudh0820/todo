@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Task = require("../models/task");
-const { findOneAndDelete } = require("../models/user");
+// const { findOneAndDelete } = require("../models/user");
 const User = require("../models/user");
 
 exports.createTask = async (task) => {
@@ -42,8 +42,40 @@ exports.assignTask = async (id, assigneeEmail) => {
   return newTask;
 };
 
-
-exports.changeStatus = async (id,user,status)=>{
+exports.changeStatus = async (id,status)=>{
     const task = await Task.findById(id);
     if(!task) throw new Error("Task not found");
+    let res;
+    
+    if(status=="ToDo")
+    {
+        if(task.status=="ToDo")
+        {
+          //update status
+          res = await Task.findOneAndUpdate({_id:id},{status:status},{new:true});
+        }
+        else throw new Error("Invalid Transition") 
+    }
+    else if(status=="In Progress")
+    {
+        if(task.status=="ToDo") 
+        {
+            //update status
+            res = await Task.findOneAndUpdate({_id:id},{status:status},{new:true});
+        }
+        else throw new Error("Invalid Transition")
+    }
+    else if (status=="Done") 
+    {
+        if(task.status=="In Progress") 
+        {
+            //update status
+            res = await Task.findOneAndUpdate({_id:id},{status:status},{new:true});
+        }
+        else throw new Error("Invalid Transition")
+    }
+    await task.save()
+    return task;
+
+
 }

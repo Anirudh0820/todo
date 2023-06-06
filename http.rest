@@ -1,48 +1,71 @@
 @baseUrl = http://localhost:4000/api
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdlZDFjNjc2NDFhOGQ2OWZjOWM0MTYiLCJuYW1lIjoiQW5pcnVkaDMzMyIsImVtYWlsIjoiYW5pcnVkaDMzM0BnbWFpbC5jb20iLCJpYXQiOjE2ODYwMzI4NjAsImV4cCI6MTY4NjAzNjQ2MH0.HF2PzSOx1r3_9zSYIRjyuuFrX8ZGqDvABY1VopEoi1Q
 
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDdmMmU5OTcxNjhiMjE3YjRkNGQyNzciLCJuYW1lIjoiQW5pcnVkaDEiLCJlbWFpbCI6ImFuaXJ1ZGgxQGdtYWlsLmNvbSIsImlhdCI6MTY4NjA1NjYxMywiZXhwIjoxNjg2MDYwMjEzfQ.oEEekAknGT6uQOsK82gWm2216b5FzrxiVJFWDL8NXvw
+
+
+
+// create task
 ###
 POST {{baseUrl}}/task
 Content-Type: application/json
 
 {
-   "title":"task1",
-    "description":"fagrreryh",
-    "priority":"medium",
-    "assignee":"647ed1c67641a8d69fc9c416"
+   "title":"task2",
+    "description":"run",
+    "priority":"high",
+    "createdBy":"647f2e997168b217b4d4d277"
 
 }
 
+
+
+//get task
 ###
 GET  {{baseUrl}}/task
 
-###
-GET {{baseUrl}}/task/647ecf807641a8d69fc9c412
 
+//get task by id
 ###
-DELETE {{baseUrl}}/task/647ecf807641a8d69fc9c412
+GET {{baseUrl}}/task/647f2ee67168b217b4d4d27d
+
+
+//delete task
+###
+DELETE {{baseUrl}}/task/647f0e913bdd273accc55429
 Authorization: bearer {{token}}
 
 
 
+//assign task
 ###
-POST {{baseUrl}}/task/assign/647eceb97641a8d69fc9c40f
+POST {{baseUrl}}/task/assign/647f2226ddf6904ec7fd3522
 Content-Type: application/json
 Authorization: bearer {{token}}
 
 {
-    "assigneeEmail":"anirudh333@gmail.com"
+    "assigneeEmail":"anirudh1209@gmail.com"
 }
 
+
+
+//change status
+###
+POST {{baseUrl}}/task/status/647f2226ddf6904ec7fd3522
+Content-Type: application/json
+Authorization: bearer {{token}}
+
+{
+    "status":"done"
+}
 
 ###
 POST {{baseUrl}}/auth/signup
 Content-Type: application/json
 
 {
-    "name":"Anirudh333",
-    "email":"anirudh333@gmail.com",
+    "name":"Anirudh1",
+    "email":"anirudh1@gmail.com",
     "password":"Password@573",
     "mobile":"+447893932118"
 }
@@ -53,7 +76,7 @@ Content-Type: application/json
 
 {
     "mobile": "+447893932118",
-    "otp" : "6231"
+    "otp" : "5491"
 }
 
 ###
@@ -61,7 +84,7 @@ POST {{baseUrl}}/auth/login
 Content-Type: application/json
 
 {
-    "email":"anirudh333@gmail.com",
+    "email":"anirudh1@gmail.com",
     "password":"Password@573"
 }
 

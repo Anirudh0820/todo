@@ -27,9 +27,9 @@ const UserSchema = new mongoose.Schema({
     mobileVerified: {
         type: Boolean,
     },
-    emailVerified: {
-        type: Boolean,
-    },
+    // emailVerified: {
+    //     type: Boolean,
+    // },
     role :{
         type : String,
         // enum:["admin","user"],

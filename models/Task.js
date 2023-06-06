@@ -4,6 +4,7 @@ const TaskSchema = new mongoose.Schema({
     title:{
         type: String,
         require:true,
+        unique:true,
     },
     description:{
         type: String,
@@ -21,7 +22,7 @@ const TaskSchema = new mongoose.Schema({
     },
     assignee:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"user",
+        ref:"User",
         require:true,
 
     },

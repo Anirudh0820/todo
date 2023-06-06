@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 require("dotenv").config();
 const User = require("../models/user");
 const Otp = require("../models/otp");
