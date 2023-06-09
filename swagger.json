@@ -6,7 +6,7 @@
         "description": "ToDo Manager Web app API"
     },
     "servers": [{
-        "url": "https://localhost:3000/api",
+        "url": "https://localhost:4000/api",
         "description": "ToDo Manager"
     }],
     "tags": [
@@ -115,54 +115,26 @@
                 }
             }
         },
-        "/auth/email-otp-verification": {
+        "/auth/mobile-otp-verification": {
             "post": {
-                "tags": ["Auth"],
-                "summary": "Verify email through OTP",
-                "description": "Verify email through OTP",
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Verify mobile through OTP",
+                "description": "Verify mobile through OTP",
                 "requestBody": {
                     "required": true,
                     "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/VerifyEmailInput"
-                            }
+                      "application/json": {
+                        "schema": {
+                          "$ref":"#/definitions/VerifyMobileInput"
                         }
+                      }
                     }
                 },
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Email verified Succesfully",
-                        "schema": {
-                            "$ref": "#/definitions/LogoutResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Error in email verification",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/auth/forgot-password": {
-            "post": {
-                "tags": ["Auth"],
-                "summary": "get link to reset password",
-                "description": "get link to reset password",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/ForgotPassInput"
-                            }
-                        }
-                    }
-                },
-                "produces": ["application/json"],
+                "produces": [
+                    "application/json"
+                ],
                 "responses": {
                     "200": {
                         "description": "Email verified Succesfully",
@@ -172,77 +144,6 @@
                     },
                     "400": {
                         "description": "Error in mobile verification",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/auth/reset-password": {
-            "post": {
-                "tags": ["Auth"],
-                "summary": "reset password",
-                "description": "reset password",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/ResetPassInput"
-                            }
-                        }
-                    }
-                },
-                "parameters": [{
-                    "name": "otp",
-                    "in": "path",
-                    "required": true,
-                    "description": "otp to reset password",
-                    "type": "number"
-                }],
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Password resetted Succesfully",
-                        "schema": {
-                            "$ref": "#/definitions/LogoutResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Error in resetting password",
-                        "schema": {
-                            "$ref": "#/definitions/Error"
-                        }
-                    }
-                }
-            }
-        },
-        "/auth/change-password": {
-            "post": {
-                "tags": ["Auth"],
-                "summary": "change password",
-                "description": "change password",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/ChangePassInput"
-                            }
-                        }
-                    }
-                },
-                "produces": ["application/json"],
-                "responses": {
-                    "200": {
-                        "description": "Password Changed Succesfully",
-                        "schema": {
-                            "$ref": "#/definitions/LogoutResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Error in changing password",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
