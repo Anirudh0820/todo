@@ -24,7 +24,7 @@ exports.login = async(email, inputPassword) => {
     if (!isMatch) {
         throw new Error("Invalid details");
     }
-    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email },
+    const token = jwt.sign({ _id: user._id, name: user.name },
         process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: "1hour",
         }

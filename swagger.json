@@ -6,7 +6,7 @@
         "description": "ToDo Manager Web app API"
     },
     "servers": [{
-        "url": "https://localhost:4000/api",
+        "url": "http://localhost:4000/api",
         "description": "ToDo Manager"
     }],
     "tags": [
@@ -184,9 +184,7 @@
                         }
                     }
                 }
-            }
-        },
-        "task/": {
+            },
             "get": {
                 "security": [{
                     "bearerAuth": []
@@ -211,7 +209,7 @@
                 }
             }
         },
-        "task/{id}": {
+        "/task/{id}": {
             "get": {
                 "security": [{
                     "bearerAuth": []
@@ -471,7 +469,7 @@
     },
     "definitions": {
         "User": {
-            "required": ["name", "email", "password","role"],
+            "required": ["name", "email", "password"],
             "properties": {
                 "name": {
                     "type": "string"
@@ -481,9 +479,8 @@
                 },
                 "password": {
                     "type": "string"
-                },
-                "role": {
-                    "type": "string"
+                },"role":{
+                    "type":"string"
                 }
             }
         },
@@ -518,8 +515,11 @@
                 }
             }
         },
-        "LoginInput": {
-            "required": ["email", "password"],
+         "LoginInput": {
+            "required": [
+                "email",
+                "password"
+            ],
             "properties": {
                 "email": {
                     "type": "string"
@@ -569,17 +569,6 @@
                 }
             }
         },
-        "VerifyEmailInput": {
-            "required": ["email", "otp"],
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "otp": {
-                    "type": "string"
-                }
-            }
-        },
         "VerifyMobileInput": {
             "required": ["mobile", "otp"],
             "properties": {
@@ -591,156 +580,8 @@
                 }
             }
         },
-        "ForgotPassInput": {
-            "properties": {
-                "mobile": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                }
-            }
-        },
-        "ResetPassInput": {
-            "required": ["password"],
-            "properties": {
-                "mobile": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "ChangePassInput": {
-            "required": ["token", "email", "password"],
-            "properties": {
-                "token": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                }
-            }
-        },
-        "Reviews": {
-            "properties": {
-                "user": {
-                    "type": "string"
-                },
-                "comment": {
-                    "type": "string"
-                },
-                "rating": {
-                    "type": "number"
-                }
-            }
-        },
-        "Product": {
-            "required": ["name", "url", "icon", "images", "description", "cost"],
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "url": {
-                    "type": "string"
-                },
-                "icon": {
-                    "type": "string"
-                },
-                "images": {
-                    "type": "array",
-                    "properties": {
-                        "type": "string"
-                    }
-                },
-                "reviews": {
-                    "type": "array",
-                    "properties": {
-                        "$ref": "#/definitions/Reviews"
-                    }
-                },
-                "category": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "cost": {
-                    "type": "number"
-                },
-                "countInStocks": {
-                    "type": "number"
-                },
-                "rating": {
-                    "type": "number"
-                },
-                "numReviews": {
-                    "type": "number"
-                },
-                "createdOn": {
-                    "type": "string"
-                },
-                "createdBy": {
-                    "type": "string"
-                }
-            }
-        },
-        "CartInput": {
-            "required": ["productId", "quantity"],
-            "properties": {
-                "productId": {
-                    "type": "string"
-                },
-                "quantity": {
-                    "type": "number"
-                }
-            }
-        },
-        "AllCartProductResponse": {
-            "type": "array",
-            "properties": {
-                "productId": {
-                    "type": "object",
-                    "$ref": "#/definitions/Product"
-                },
-                "quantity": {
-                    "type": "number"
-                }
-            }
-        },
-        "CartTotalResponse": {
-            "properties": {
-                "total": {
-                    "type": "number"
-                }
-            }
-        },
-        "AllProductResponse": {
-            "type": "array",
-            "properties": {
-                "$ref": "#/definitions/Product"
-            }
-        },
-        "ProductResponse": {
-            "properties": {
-                "$ref": "#/definitions/Product"
-            }
-        },
-        "AllReviewsResponse": {
-            "type": "array",
-            "properties": {
-                "$ref": "#/definitions/AllCartProductResponse"
-            }
-        },
         "Task": {
-            "required": ["title", "description", "priority","dueDate","assignee"],
+            "required": ["title", "description", "priority","createdBy"],
             "properties": {
                 "title": {
                     "type": "string"
@@ -751,11 +592,8 @@
                 "priority": {
                     "type": "string"
                 },
-                "dueDate": {
+                "createdBy": {
                     "type": "string"
-                },
-                "assignee":{
-                    "type":"string"
                 }
             }
         }
